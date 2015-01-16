@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+require 'io/console'
+require_relative 'lib/errwipe'
+
+
+print 'Username: '
+username = gets.strip
+print 'Password: '
+password = STDIN.noecho(&:gets).strip
+puts
+
+
+wiper = Errwipe.new
+
+wiper.configure do |c|
+  c.errbit_url = 'https://errbit.puzzle.ch'
+  c.username = username
+  c.password = password
+  c.apps = [/Hitobito/i]
+  c.errors = [/Can't connect to MySQL server/,
+              /MySQL server has gone away/,
+              /Lost connection to MySQL server/,
+              /^Timeout::Error: Timeout::Error$/]
+end
+
+wiper.perform!
