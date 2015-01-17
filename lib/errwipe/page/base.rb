@@ -4,6 +4,8 @@ module Errwipe
   module Page
     class Base
 
+      FLASH_SELECTOR = '#flash-messages'
+
       def initialize(agent, url = nil)
         @agent = agent
         @url = url
@@ -11,7 +13,7 @@ module Errwipe
       end
 
       def flash_message
-        page.search('#flash-messages').text.strip
+        find(FLASH_SELECTOR).text.strip
       end
 
       private
@@ -20,6 +22,10 @@ module Errwipe
 
       def load
         agent.get(url) if url
+      end
+
+      def find(selector)
+        page.search(selector)
       end
 
       def page

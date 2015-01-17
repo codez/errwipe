@@ -6,16 +6,17 @@ module Errwipe
   module Page
     class Apps < Base
 
+      LINKS_SELECTOR = '.apps .name a'
+
       def select_app_links
-        page.search('.apps .name a').
-             select { |l| yield l.text }.
-             collect { |l| l[:href] }
+        app_links.select { |l| yield l.text }.
+                  collect { |l| l[:href] }
       end
 
       private
 
-      def url
-        '/apps'
+      def app_links
+        find(LINKS_SELECTOR)
       end
 
     end

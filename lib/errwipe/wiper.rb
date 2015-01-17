@@ -1,8 +1,5 @@
 # encoding: utf-8
 
-require 'rubygems'
-require 'mechanize'
-
 require_relative 'config'
 require_relative 'page/login'
 require_relative 'page/apps'
@@ -15,9 +12,9 @@ module Errwipe
     attr_reader :config
 
     def initialize
-      @config = Config.new
       @agent = Mechanize.new
-      yield @config
+      @config = Config.new
+      yield @config if block_given?
     end
 
     def perform!
@@ -53,7 +50,7 @@ module Errwipe
       page.delete_errors! do |message|
         Array(config.errors).any? { |e| message =~ e }
       end
-      
+
       puts page.flash_message
     end
 

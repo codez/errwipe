@@ -3,6 +3,13 @@
 module Errwipe
   module Component
     class ErrorRow
+      
+      MESSAGE_SELECTOR = '.message a'
+      INPUT_SELECTOR   = '.select input'
+
+      # errbit hack for wrapping strings
+      MAGIC_WRAPPING_CHAR = "\xE2\x80\x8B"
+
       attr_reader :form, :node
 
       def initialize(form, node)
@@ -11,8 +18,8 @@ module Errwipe
       end
 
       def message
-        message = node.search('.message a').text
-        message.gsub("\xE2\x80\x8B", '') # errbit hack for wrapping strings
+        message = node.search(MESSAGE_SELECTOR).text
+        message.gsub(MAGIC_WRAPPING_CHAR, '')
       end
 
       def check!
@@ -26,7 +33,7 @@ module Errwipe
       end
 
       def error_id
-        node.search('.select input').first['value']
+        node.search(INPUT_SELECTOR).first['value']
       end
     end
   end

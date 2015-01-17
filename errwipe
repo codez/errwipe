@@ -1,15 +1,13 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
-require_relative 'lib/errwipe/credential_prompt'
-require_relative 'lib/errwipe/wiper'
-
+require_relative 'lib/errwipe'
 
 wiper = Errwipe::Wiper.new do |c|
-  c.errbit_url = 'https://errbit.puzzle.ch'
+  c.errbit_url = 'http://errbit-demo.herokuapp.com'
 
-  c.apps = [/Hitobito/i]
-  
+  c.apps = [/Demo/i]
+
   c.errors = [/Can't connect to MySQL server/,
               /MySQL server has gone away/,
               /Lost connection to MySQL server/,
