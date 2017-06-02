@@ -33,7 +33,7 @@ module Errwipe
       end
 
       def form
-        page.form
+        page.forms.last
       end
 
     end
