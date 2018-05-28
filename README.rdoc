@@ -5,7 +5,7 @@ Delete errors from {Errbit}[https://github.com/errbit/errbit] automatically. Thi
 == Installation
 
 * Clone this repo.
-* +bundle install+
+* <tt>bundle install</tt>
 * Configure the Errbit url and regular expressions for the apps and errors you wish to delete in the +errwipe+ script.
 * Run <tt>./errwipe</tt>
 * Enter your credentials for Errbit.
