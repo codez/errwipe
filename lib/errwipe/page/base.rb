@@ -6,6 +6,8 @@ module Errwipe
 
       FLASH_SELECTOR = '#flash-messages'
 
+      attr_reader :url
+
       def initialize(agent, url = nil)
         @agent = agent
         @url = url
@@ -18,7 +20,7 @@ module Errwipe
 
       private
 
-      attr_reader :agent, :url
+      attr_reader :agent
 
       def load
         agent.get(url) if url

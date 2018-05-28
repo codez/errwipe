@@ -21,8 +21,6 @@ module Errwipe
       end
 
       def delete_errors!
-        @errors_deleted = false
-
         return unless form
 
         error_rows.each do |row|
@@ -43,6 +41,10 @@ module Errwipe
 
       def errors_deleted?
         @errors_deleted
+      end
+
+      def page_number
+        (url[/page=(\d+)/, 1] || 1).to_i
       end
 
       private
