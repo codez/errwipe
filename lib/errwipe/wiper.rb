@@ -3,10 +3,8 @@ require_relative 'page/login'
 require_relative 'page/apps'
 require_relative 'page/errors'
 
-
 module Errwipe
   class Wiper
-
     DELETE_SLEEP_PERIOD = 0.5 # Seconds
 
     attr_reader :config
@@ -92,6 +90,5 @@ module Errwipe
              " after retrying #{try} times, I am going to stop."
       end
     end
-
   end
 end
