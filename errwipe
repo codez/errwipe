@@ -15,7 +15,9 @@ wiper = Errwipe::Wiper.new do |c|
 
   c.errors = [/Can't connect to MySQL server/,
               /MySQL server has gone away/,
+              /closed MySQL connection/,
               /Lost connection to MySQL server/,
+              /MySQL client is not connected/,
               /^Timeout::Error: Timeout::Error$/]
 
   prompt = Errwipe::CredentialPrompt.new
