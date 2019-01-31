@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 require_relative 'config'
 require_relative 'page/login'
 require_relative 'page/apps'
