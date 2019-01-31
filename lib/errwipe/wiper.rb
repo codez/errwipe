@@ -1,14 +1,10 @@
-# encoding: utf-8
-
 require_relative 'config'
 require_relative 'page/login'
 require_relative 'page/apps'
 require_relative 'page/errors'
 
-
 module Errwipe
   class Wiper
-
     DELETE_SLEEP_PERIOD = 0.5 # Seconds
 
     attr_reader :config
@@ -32,6 +28,7 @@ module Errwipe
     attr_reader :agent
 
     def login
+      puts "Logging in at #{config.errbit_url}..."
       page = Page::Login.new(agent, config.errbit_url)
       success = page.login!(config.username, config.password)
       puts page.flash_message unless success
@@ -94,6 +91,5 @@ module Errwipe
              " after retrying #{try} times, I am going to stop."
       end
     end
-
   end
 end

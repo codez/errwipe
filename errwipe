@@ -1,16 +1,25 @@
 #!/usr/bin/env ruby
-# encoding: utf-8
 
 require_relative 'lib/errwipe'
 
 wiper = Errwipe::Wiper.new do |c|
-  c.errbit_url = 'http://errbit-demo.herokuapp.com'
+  c.errbit_url = ENV['ERRWIPE_ERRBIT_URL'] || 'http://errbit-demo.herokuapp.com'
 
-  c.apps = [/Demo/i]
+  c.apps = if ENV['ERRWIPE_APPS']
+             ENV['ERRWIPE_APPS'].split(',').map do |re|
+               /#{re}/i
+             end
+           else
+             [/Demo/i]
+           end
 
   c.errors = [/Can't connect to MySQL server/,
               /MySQL server has gone away/,
+              /closed MySQL connection/,
               /Lost connection to MySQL server/,
+              /MySQL client is not connected/,
+              /^Net::ReadTimeout: Net::ReadTimeout$/,
+              /^Net::OpenTimeout: execution expired$/,
               /^Timeout::Error: Timeout::Error$/]
 
   prompt = Errwipe::CredentialPrompt.new
