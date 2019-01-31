@@ -28,6 +28,7 @@ module Errwipe
     attr_reader :agent
 
     def login
+      puts "Logging in at #{config.errbit_url}..."
       page = Page::Login.new(agent, config.errbit_url)
       success = page.login!(config.username, config.password)
       puts page.flash_message unless success
