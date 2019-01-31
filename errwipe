@@ -18,6 +18,8 @@ wiper = Errwipe::Wiper.new do |c|
               /closed MySQL connection/,
               /Lost connection to MySQL server/,
               /MySQL client is not connected/,
+              /^Net::ReadTimeout: Net::ReadTimeout$/,
+              /^Net::OpenTimeout: execution expired$/,
               /^Timeout::Error: Timeout::Error$/]
 
   prompt = Errwipe::CredentialPrompt.new
