@@ -1,30 +1,23 @@
 #!/usr/bin/env ruby
 
 require_relative 'lib/errwipe'
+require 'pathname'
 
 wiper = Errwipe::Wiper.new do |c|
-  c.errbit_url = ENV['ERRWIPE_ERRBIT_URL'] || 'http://errbit-demo.herokuapp.com'
+  config_file = Errwipe::ConfigurationFile.new(
+    Pathname.new('config.yml').expand_path
+  )
 
-  c.apps = if ENV['ERRWIPE_APPS']
-             ENV['ERRWIPE_APPS'].split(',').map do |re|
-               /#{re}/i
-             end
-           else
-             [/Demo/i]
-           end
+  c.errbit_url = config_file['errbit_url'] || 'http://errbit-demo.herokuapp.com'
 
-  c.errors = [/Can't connect to MySQL server/,
-              /MySQL server has gone away/,
-              /closed MySQL connection/,
-              /Lost connection to MySQL server/,
-              /MySQL client is not connected/,
-              /^Net::ReadTimeout: Net::ReadTimeout$/,
-              /^Net::OpenTimeout: execution expired$/,
-              /^Timeout::Error: Timeout::Error$/]
+  app_names = config_file['apps'] || ['Demo']
+  c.apps = app_names.map { |re| /#{re}/i }
+
+  c.errors = (config_file['errors'] || []).map { |re| /#{re}/ }
 
   prompt = Errwipe::CredentialPrompt.new
-  c.username = prompt.username
-  c.password = prompt.password
+  c.username = config_file['errbit_username'] || prompt.username
+  c.password = config_file['errbit_password'] || prompt.password
   puts
 end
 

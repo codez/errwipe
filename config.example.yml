@@ -1,0 +1,15 @@
+errbit_url: http://errbit-demo.herokuapp.com
+apps:
+  - Demo
+errors:
+  - Can't connect to MySQL server
+  - Mysql2::Error: Server shutdown in progress
+  - MySQL server has gone away
+  - closed MySQL connection
+  - Lost connection to MySQL server
+  - MySQL client is not connected
+  - ^Net::ReadTimeout: Net::ReadTimeout$
+  - ^Net::OpenTimeout: execution expired$
+  - ^Timeout::Error: Timeout::Error$
+# errbit_username: user
+# errbit_password: pass
