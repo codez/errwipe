@@ -6,7 +6,7 @@ Delete errors from {Errbit}[https://github.com/errbit/errbit] automatically. Thi
 
 * Clone this repo.
 * <tt>bundle install</tt>
-* Copy `config.example.yml` to `config.yml` and configure the Errbit url and regular expressions for the apps and errors you wish to delete.
+* Copy <tt>config.example.yml</tt> to <tt>config.yml</tt> and configure the Errbit url and regular expressions for the apps and errors you wish to delete.
 * Run <tt>./errwipe</tt>
-* Enter your credentials for Errbit (unless you prefer to also put them into `config.yml`).
+* Enter your credentials for Errbit (unless you prefer to also put them into <tt>config.yml</tt>).
 * Profit!
